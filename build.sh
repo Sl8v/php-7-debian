@@ -19,7 +19,9 @@ sudo apt-get install -y \
     libjpeg-dev \
     libpng-dev \
     libpspell-dev \
-    libreadline-dev
+    libreadline-dev \
+    apache2-threaded-dev \
+    libaprutil1-dev
 
 sudo mkdir /usr/local/php7
 
@@ -27,6 +29,7 @@ git clone https://github.com/php/php-src.git
 cd php-src
 git fetch
 git checkout tags/php-7.1.3
+# make clean
 ./buildconf --force
 
 CONFIGURE_STRING="--prefix=/usr/local/php7 \
@@ -66,6 +69,7 @@ CONFIGURE_STRING="--prefix=/usr/local/php7 \
                   --with-readline \
                   --with-curl \
                   --enable-fpm \
+                  --with-apxs2=/usr/bin/apxs2 \
                   --with-fpm-user=www-data \
                   --with-fpm-group=www-data"
 
